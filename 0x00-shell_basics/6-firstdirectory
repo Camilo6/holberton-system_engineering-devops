@@ -1,7 +1,2 @@
 #!bin/bash
-<<<<<<< HEAD
 cd /tmp ; mkdir/holberton ; cd /holberton
-
-=======
-cd /tmp mkdir/holberton cd /holberton
->>>>>>> 46b28dbc51b5aa8838da9b3c7b2541ccdc4fb496
