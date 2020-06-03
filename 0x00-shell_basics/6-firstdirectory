@@ -1,6 +1,2 @@
 #!bin/bash
-<<<<<<< HEAD
-mkdir /tmp/holberton/
-=======
-cd /tmp ; mkdir holberton; cd holberton
->>>>>>> 3ad903ec3c9319df89326873f200480d7124694b
+mkdir /tmp/holberton
