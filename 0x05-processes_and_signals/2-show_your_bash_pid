@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# This script is displaying PIDs in lines that contain bash
+ps -u | grep "bash"
