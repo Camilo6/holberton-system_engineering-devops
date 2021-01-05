@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
+
 # Script that display information about subdomains using awk and function
+
 # shellcheck disable=SC2086
+
 Add_subd () {
 if [ "$2" ];
 then
