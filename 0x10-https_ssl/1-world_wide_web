@@ -1,20 +1,20 @@
 #!/usr/bin/env bash
-
-# Script that display information about subdomains using awk and function
-
+# Prints subdomains info
 # shellcheck disable=SC2086
 
-Add_subd () {
-if [ "$2" ];
-then
-    echo -n "The subdomain $2 is a"
-    dig "$2.$1" | grep -A1 'ANSWER SECTION:' | awk '{print " " $4 " record and points to " $5}' | tail -n 1
-else
-    for i in www lb-01 web-01 web-02
-    do
-        echo -n "The subdomain $i is a"
-        dig "$i.$1" | grep -A1 'ANSWER SECTION:' | awk '{print " " $4 " record and points to " $5}' | tail -n 1
-    done
-fi
+subdomain_inf () {
+    RT=$(dig $2.$1 | grep -A1 'ANSWER SECTION' | awk '{print $4}' | tail -n 1)
+    DEST=$(dig $2.$1 | grep -A1 'ANSWER SECTION' | awk '{print $5}' | tail -n 1)
+    echo "The subdomain $2 is a $RT record and points to $DEST"
 }
-Add_subd "$1" "$2"
+
+if [ $# -eq 1 ]
+then
+    subdomain_inf $1 "www"
+    subdomain_inf $1 "lb-01"
+    subdomain_inf $1 "web-01"
+    subdomain_inf $1 "web-02"
+elif [ $# -gt 1 ]
+then
+    subdomain_inf $1 $2
+fi
