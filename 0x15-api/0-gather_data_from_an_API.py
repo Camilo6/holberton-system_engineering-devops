@@ -7,8 +7,8 @@ import sys
 if __name__ == "__main__":
 
     empID = sys.argv[1]
-    employed = requests.get("https://jsonplaceholder.typicode.com/users/{}"
-                        .format(empID))
+    employed = requests.get("https://jsonplaceholder.typicode.com/users/{}".
+                            format(empID))
 
     name = employed.json().get('name')
 
