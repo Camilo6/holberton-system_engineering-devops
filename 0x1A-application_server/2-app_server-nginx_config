@@ -38,18 +38,10 @@ server {
         index index.html index.htm index.nginx-debian.html;
 
 
-        location /hbnb_static/ {
-                alias /data/web_static/current/;
-                autoindex off;
-        }
-
         location /airbnb-onepage/ {
                 include proxy_params;
                 proxy_pass http://0.0.0.0:5000/airbnb-onepage/;
         }
-
-
-
 
 
         server_name 35.229.79.81;
