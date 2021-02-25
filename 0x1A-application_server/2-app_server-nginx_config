@@ -15,8 +15,6 @@
 #
 server {
         listen 80 default_server;
-add_header X-Served-By 1865-web-01;
-        rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;
         listen [::]:80 default_server;
 
         # SSL configuration
@@ -37,6 +35,12 @@ add_header X-Served-By 1865-web-01;
 
         location /hbnb_static/ {
                 alias /data/web_static/current/;
+                autoindex off;
+        }
+
+        location /airbnb-onepage/ {
+                include proxy_params;
+                proxy_pass http://0.0.0.0:5000/airbnb-onepage/;
         }
 
         root /var/www/html;
@@ -45,24 +49,17 @@ add_header X-Served-By 1865-web-01;
         index index.html index.htm index.nginx-debian.html;
 
         server_name _;
+        add_header X-Served-By $hostname;
+        rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;
 error_page 404 /custom_404.html;
 location = /custom_404.html {
-root /usr/share/nginx/html;
-internal;
+        root /usr/share/nginx/html;
+        internal;
 }
-
-
- add_header X-Served-By 1865-web-01;
-
- add_header X-Served-By gc-1865-web-01-1608593224;
-
- add_header X-Served-By gc-1865-web-01-1608593224;
         location / {
                 # First attempt to serve request as file, then
                 # as directory, then fall back to displaying a 404.
                 try_files $uri $uri/ =404;
-
- add_header X-Served-By 1865-web-01;
         }
 
         # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000
